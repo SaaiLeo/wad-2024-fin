@@ -37,7 +37,11 @@ export default function Home() {
             },
           },
           { field: "memberNumber", headerName: "Member Number", width: 150 },
-          { field: "name", headerName: "Name", width: 150 },
+          { field: "name", headerName: "Name", width: 150,    renderCell: (params) => (
+            <Link href={`/customer/${params.row.id}`} className="text-blue-600 hover:underline">
+              {params.row.name}
+            </Link>
+          ),},
     ]
 
     async function fetchCustomer() {
@@ -183,7 +187,7 @@ export default function Home() {
             
 
             <div className="bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4">Plan List</h2>
+          <h2 className="text-2xl font-semibold mb-4">Customer List</h2>
           <DataGrid
             rows={customerList}
             columns={columns}
